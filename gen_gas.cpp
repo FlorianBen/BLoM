@@ -23,16 +23,20 @@ int main(int argc, char *argv[]) {
   constexpr bool useLog = true;
   gas.SetFieldGrid(emin, emax, nE, useLog);
 
+  // Set composition
   gas.SetComposition("N2", 100);
   // Set the temperature [K].
   gas.SetTemperature(293.15);
   // Set the pressure [Torr].
   gas.SetPressure(1.1 * 760.);
 
+  // Number of collision
   const int ncoll = 10;
+
   // Run Magboltz to generate the gas table.
   gas.GenerateGasTable(ncoll);
 
+  // Write to file
   gas.WriteGasFile("data/n2.gas");
 
   ViewMedium view;
